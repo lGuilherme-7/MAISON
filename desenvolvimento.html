@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Em Desenvolvimento — MAISON</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #c8a97a;
+      --text: #1a1814;
+      --text2: #6b6560;
+      --text3: #9c9590;
+      --border: #e8e4de;
+      --bg: #faf9f7;
+      --f-display: 'Cormorant Garamond', Georgia, serif;
+      --f-body: 'Jost', sans-serif;
+    }
+    body {
+      font-family: var(--f-body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      animation: fadeUp 0.7s ease forwards;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    .logo {
+      font-family: var(--f-display);
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--text);
+      margin-bottom: 40px;
+      display: block;
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(200,169,122,0.1);
+      border: 1px solid rgba(200,169,122,0.3);
+      color: var(--accent);
+      padding: 6px 16px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 28px;
+      border-radius: 2px;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+    h1 {
+      font-family: var(--f-display);
+      font-size: clamp(34px, 6vw, 54px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+      margin-bottom: 20px;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+
+    .divider {
+      width: 48px; height: 1px;
+      background: var(--accent);
+      margin: 0 auto 24px;
+      opacity: 0.5;
+    }
+
+    .desc {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.8;
+      max-width: 480px;
+      margin: 0 auto 12px;
+    }
+
+    .disclaimer {
+      background: rgba(200,169,122,0.06);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 18px 22px;
+      margin: 32px 0;
+      text-align: left;
+    }
+    .disclaimer p {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.75;
+    }
+    .disclaimer strong { color: var(--text); font-weight: 500; }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin: 24px 0 32px;
+    }
+    .tech-tag {
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text3);
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+
+    .btn-home {
+      display: inline-block;
+      background: var(--text);
+      color: #fff;
+      padding: 14px 36px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      border-radius: 2px;
+    }
+    .btn-home:hover { background: var(--accent); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,169,122,0.25); }
+
+    .footer-note {
+      margin-top: 48px;
+      font-size: 12px;
+      color: var(--text3);
+      letter-spacing: 0.05em;
+    }
+    .footer-note a { color: var(--accent); text-decoration: none; }
+    .footer-note a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <a href="index.html" class="logo">MAIS<span>ON</span></a>
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Em desenvolvimento
+    </div>
+
+    <h1>Site <em>fictício</em><br>para demonstração</h1>
+
+    <div class="divider"></div>
+
+    <p class="desc">
+      Esta é uma loja virtual de demonstração criada exclusivamente para fins de portfólio e apresentação de layout. Nenhum produto real é comercializado aqui.
+    </p>
+
+    <div class="disclaimer">
+      <p>
+        <strong>⚠ Aviso importante:</strong> A MAISON é um projeto fictício. Todos os produtos, preços, marcas, imagens e informações exibidos neste site são <strong>meramente ilustrativos</strong>. Não há transações reais, dados pessoais coletados ou qualquer vínculo comercial. Este projeto foi desenvolvido com <strong>HTML, CSS e JavaScript puro</strong>, sem back-end, e hospedado no GitHub Pages apenas como demonstração de front-end.
+      </p>
+    </div>
+
+    <div class="tech-list">
+      <span class="tech-tag">HTML5</span>
+      <span class="tech-tag">CSS3</span>
+      <span class="tech-tag">JavaScript</span>
+      <span class="tech-tag">LocalStorage</span>
+      <span class="tech-tag">GitHub Pages</span>
+      <span class="tech-tag">Mobile First</span>
+    </div>
+
+    <a href="index.html" class="btn-home">← Voltar à loja</a>
+
+    <p class="footer-note">
+      Desenvolvido por <a href="#">seu nome aqui</a> · Projeto de portfólio · 2025
+    </p>
+
+  </div>
+</body>
+</html>
